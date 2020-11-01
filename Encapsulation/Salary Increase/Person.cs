@@ -24,15 +24,14 @@ namespace PersonsInfo
         
         public void IncreaseSalary(decimal percentage)
         {
-            if(this.Age < 30)
+            var divisor = 100;
+
+            if (this.Age < 30)
             {
-                this.Salary += this.Salary * percentage / 200; 
-            }
-            else
-            {
-                this.Salary += this.Salary * percentage / 100;
+                divisor = 200;
             }
 
+            this.Salary += this.Salary * percentage / divisor;
         }
 
         public override string ToString()
