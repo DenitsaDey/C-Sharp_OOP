@@ -23,5 +23,6 @@ namespace Vehicles.Models
                 base.FuelConsumption = value + Airconditioning;
             }
         }
+
     }
 }

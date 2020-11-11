@@ -25,7 +25,7 @@ namespace Vehicles.Core
             int n = int.Parse(Console.ReadLine());
             for (int i = 0; i < n; i++)
             {
-                string[] command = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                string[] command = Console.ReadLine().Split();
                 try
                 {
                     ProcessCommand(car, truck, bus, command);
@@ -35,9 +35,9 @@ namespace Vehicles.Core
                     Console.WriteLine(ioe.Message);
                 }
             }
-            Console.WriteLine($"Car: {car.FuelQuantity:f2}");
-            Console.WriteLine($"Truck: {truck.FuelQuantity:f2}");
-            Console.WriteLine($"Bus: {bus.FuelQuantity:f2}");
+            Console.WriteLine(car.ToString());
+            Console.WriteLine(truck.ToString());
+            Console.WriteLine(bus.ToString());
         }
 
         private Vehicle ProduceVehicle()

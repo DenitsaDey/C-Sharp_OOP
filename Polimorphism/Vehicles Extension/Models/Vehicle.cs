@@ -36,7 +36,7 @@ namespace Vehicles.Models
         
         public double TankCapacity { get; private set; }
 
-        public virtual double FuelConsumptionEmpty { get; protected set; }
+        //public virtual double FuelConsumptionEmpty { get; protected set; }
 
         public void Drive(double distance)
         {
@@ -50,14 +50,14 @@ namespace Vehicles.Models
 
         }
 
-        public void DriveEmpty(double distance)
+        public virtual void DriveEmpty(double distance)
         {
-            var fuelNeeded = this.FuelConsumptionEmpty * distance;
-            if (fuelNeeded > this.FuelQuantity)
-            {
-                throw new InvalidOperationException(String.Format(ExceptionMessages.NotEnoughFuelExcMsg, this.GetType().Name));
-            }
-            this.FuelQuantity -= fuelNeeded;
+            //var fuelNeeded = this.FuelConsumptionEmpty * distance;
+            //if (fuelNeeded > this.FuelQuantity)
+            //{
+            //    throw new InvalidOperationException(String.Format(ExceptionMessages.NotEnoughFuelExcMsg, this.GetType().Name));
+            //}
+            //this.FuelQuantity -= fuelNeeded;
             Console.WriteLine($"{this.GetType().Name} travelled {distance} km");
         }
 
@@ -75,6 +75,10 @@ namespace Vehicles.Models
                 }
                 this.FuelQuantity += fuelAmount;
             }
+        }
+        public override string ToString()
+        {
+            return $"{this.GetType().Name}: {this.fuelQuantity:f2}";
         }
     }
 }
