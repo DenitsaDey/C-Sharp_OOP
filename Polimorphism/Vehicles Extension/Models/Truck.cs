@@ -8,7 +8,7 @@ namespace Vehicles.Models
     public class Truck : Vehicle
     {
         private const double Airconditioning = 1.6;
-        private const double TankLeak = 0.95;
+        private const double TankLeak = 0.05;
 
         public Truck(double fuelQuantity, double fuelConsumption, double tankCapacity)
             : base(fuelQuantity, fuelConsumption, tankCapacity)
@@ -31,7 +31,7 @@ namespace Vehicles.Models
         public override void Refuel(double fuelAmount)
         {
             base.Refuel(fuelAmount);
-            this.FuelQuantity = fuelAmount * TankLeak;
+            this.FuelQuantity -= fuelAmount * TankLeak;
         }
 
        
