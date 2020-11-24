@@ -1,4 +1,4 @@
-﻿//using FightingArena;
+using FightingArena;
 using NUnit.Framework;
 using System;
 
@@ -75,6 +75,13 @@ namespace Tests
         {
             this.arena.Enroll(w1);
 
+            Assert
+                .Throws<InvalidOperationException>(() => this.arena.Fight(w2.Name, w1.Name));
+        }
+
+        [Test]
+        public void FightShouldThrowExceptionIfBothDontExist()
+        {
             Assert
                 .Throws<InvalidOperationException>(() => this.arena.Fight(w2.Name, w1.Name));
         }
