@@ -1,4 +1,4 @@
-//using FightingArena;
+using FightingArena;
 using NUnit.Framework;
 using System;
 
@@ -48,7 +48,7 @@ namespace Tests
         [TestCase("Voin", 50, 100, "Vrag", 60, 30)]
         [TestCase("Voin", 50, 29, "Vrag", 60, 100)]
         [TestCase("Voin", 50, 30, "Vrag", 60, 100)]
-        public void AttackingEnemyShouldThrowExceptionWhenWarriorOrEnemyHealthBellow30(string warriorName, int warriorDmg, int warriorHp, string enemyName, int enemyDmg, int enemyHP)
+        public void AttackingEnemyShouldThrowExceptionWhenWarriorOrEnemyHealthBellow31(string warriorName, int warriorDmg, int warriorHp, string enemyName, int enemyDmg, int enemyHP)
         {
             Warrior warrior = new Warrior(warriorName, warriorDmg, warriorHp);
             Warrior enemy = new Warrior(enemyName, enemyDmg, enemyHP);
@@ -67,15 +67,16 @@ namespace Tests
         }
 
         [Test]
-        public void AttackingEnemyShouldDecreaseTheWarriorHealth()
+        public void AttackingEnemyShouldDecreaseBothHealth()
         {
             Warrior enemy = new Warrior("Vrag", 90, 100);
             int expectedWarriorHP = 10;
+            int expectedEnemyHP = 50;
 
             warrior.Attack(enemy);
 
             Assert.AreEqual(expectedWarriorHP, warrior.HP);
-            
+            Assert.AreEqual(expectedEnemyHP, enemy.HP);
         }
 
         [Test]
@@ -84,23 +85,12 @@ namespace Tests
 
             Warrior enemy = new Warrior("Vrag", 30, 40);
             int expectedEnemyHP = 0;
+            int expectedWarriorHP = 70;
 
             warrior.Attack(enemy);
 
             Assert.AreEqual(expectedEnemyHP, enemy.HP);
-        }
-
-        [Test]
-        public void AttackingEnemyShouldDecreaseTheWarriorHealthWhenDamageIsSmaller()
-        {
-            Warrior enemy = new Warrior("Vrag", 90, 100);
-            int expectedEnemyHP = 50;
-            
-            warrior.Attack(enemy);
-
-            Assert.AreEqual(expectedEnemyHP, enemy.HP);
-            
-
+            Assert.AreEqual(expectedWarriorHP, warrior.HP);
         }
 
     }
